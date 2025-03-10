@@ -1,4 +1,4 @@
-**/target/
+sky-common/target/
 .idea
 *.iml
 *.class
