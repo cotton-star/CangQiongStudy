@@ -119,4 +119,14 @@ public class CategoryServicelmpl implements CategoryService {
 
         categoryMapper.deleteById(id);
     }
+
+
+    /**
+     * 根据类型查询分类
+     * @param type
+     * @return
+     */
+    public List<Category> list(Integer type) {
+        return categoryMapper.list(type);
+    }
 }
