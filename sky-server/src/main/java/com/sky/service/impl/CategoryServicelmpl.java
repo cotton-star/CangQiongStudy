@@ -63,4 +63,32 @@ public class CategoryServicelmpl implements CategoryService {
 
         return new PageResult(total,records);
     }
+
+
+    /**
+     * 修改分类
+     * @param categoryDTO
+     */
+    public void update(CategoryDTO categoryDTO) {
+        Category category=new Category();
+        BeanUtils.copyProperties(categoryDTO,category);
+
+        category.setUpdateTime(LocalDateTime.now());
+        category.setUpdateUser(BaseContext.getCurrentId());
+
+        categoryMapper.update(category);
+    }
+
+    /**
+     * 启用禁用分类
+     * @param status
+     * @param id
+     */
+    public void StartOrStop(Integer status, Long id) {
+        Category category=new Category();
+        category.setId(id);
+        category.setStatus(status);
+
+        categoryMapper.update(category);
+    }
 }

@@ -4,6 +4,7 @@ package com.sky.controller.admin;
 import com.github.pagehelper.Page;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
+import com.sky.entity.Category;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CategoryService;
@@ -49,5 +50,29 @@ public class CategoryController {
         PageResult pageResult=categoryService.pageQuery(categoryPageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * 修改分类
+     * @param categoryDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("修改分类")
+    public Result update(@RequestBody CategoryDTO categoryDTO){
+        log.info("修改分类:{}",categoryDTO);
+        categoryService.update(categoryDTO);
+        return Result.success();
+    }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用分类")
+    public Result StartOrStop(@PathVariable Integer status ,Long id){
+        log.info("启用禁用分类:{},{}",status,id);
+        categoryService.StartOrStop(status,id);
+        return Result.success();
+    }
+
+
+
 
 }
