@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.entity.Category;
+import com.sky.mapper.DishMapper;
 import com.sky.result.PageResult;
 import com.sky.result.Result;
 import com.sky.service.CategoryService;
@@ -64,6 +65,12 @@ public class CategoryController {
         return Result.success();
     }
 
+    /**
+     * 启用禁用分类
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/status/{status}")
     @ApiOperation("启用禁用分类")
     public Result StartOrStop(@PathVariable Integer status ,Long id){
@@ -72,6 +79,18 @@ public class CategoryController {
         return Result.success();
     }
 
+    /**
+     * 删除分类
+     * @param id
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("删除分类")
+    public Result deleteById(Long id){
+        log.info("删除分类");
+        categoryService.deleteById(id);
+        return Result.success();
+    }
 
 
 
